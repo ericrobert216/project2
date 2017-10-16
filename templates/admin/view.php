@@ -7,6 +7,7 @@
  */
 
 //include "default-fillter.php"
+require_once(ZOO_LN_TEMPLATES_PATH . 'admin/default-filter.php');
 
 //include "filter-overwrite.php"
 
