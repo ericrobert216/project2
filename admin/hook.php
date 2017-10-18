@@ -26,31 +26,5 @@ function register_my_custom_menu_page(){
 }
 
 function settings_callback(){
-
-    require_once ZOO_LN_TEMPLATES_PATH.'admin/view.php';
+    require_once ZOO_LN_DIRPATH.'admin/setting.php';
 }
-
-
-
-//
-//
-//add_action( 'woocommerce_settings_tabs', 'Zoo\Admin\Hook\add_setting_tab' );
-//add_action( 'woocommerce_settings_clever-layered-navigation', 'Zoo\Admin\Hook\setting_tab_content' );
-//
-//function active_action() {
-//    //add config table
-//}
-//
-//function add_setting_tab() {
-//    //link to custom tab
-//    $current_tab = $_GET['tab'];
-//    $name = 'clever-layered-navigation';
-//
-//    echo '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=' . $name ) . '" class="nav-tab ' . ( $current_tab == $name ? 'nav-tab-active' : '' ) . '">'
-//        . __( "Clever Layered Navigation", "clever-layered-navigation" ) . '</a>';
-//}
-//
-//function setting_tab_content() {
-//    // content
-//    var_dump('aaaaaaaaaaaaaaaaaaaa');
-//}
