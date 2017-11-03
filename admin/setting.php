@@ -33,7 +33,7 @@ function load_page() {
 }
 function save_setting() {
 
-    var_dump($_POST);
+    //var_dump($_POST);
 
     if ( isset( $_POST['zoo_ln_nonce_setting'] ) && wp_verify_nonce( $_POST['zoo_ln_nonce_setting'], 'save_setting' ) ) {
         // process form data
