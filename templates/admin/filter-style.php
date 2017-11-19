@@ -5,46 +5,22 @@
  * Date: 10/19/17
  * Time: 1:56 AM
  */
+
+$filter_view_style = isset($data['filter_view_style']) ? strval($data['filter_view_style']) : 'horizontal';
 ?>
 
 <form action="" method="post">
     <table class="form-table">
         <tbody>
         <tr>
-            <th class="">Ajax</th>
+            <th class="">Filter view style:</th>
             <td class="">
                 <fieldset>
-                    <input name="apply_ajax" id="apply_ajax" class="" value="1" type="checkbox">
-                    <label for="apply_ajax">
-                        Description
-                    </label>
-                </fieldset>
-            </td>
-        </tr>
-        <tr>
-            <th class="">Order result by:</th>
-            <td class="">
-                <fieldset>
-                    <select name="order_result_by" id="order_result_by">
-                        <option value="id">ID</option>
-                        <option value="name">Name</option>
-                        <option value="slug">Slug</option>
+                    <select name="filter_view_style" id="filter_view_style">
+                        <option value="horizontal" <?php selected($filter_view_style, 'horizontal'); ?>>Horizontal</option>
+                        <option value="vertical" <?php selected($filter_view_style, 'vertical'); ?>>Vertical</option>
                     </select>
-                    <label for="order_result_by">
-                        Description
-                    </label>
-                </fieldset>
-            </td>
-        </tr>
-        <tr>
-            <th class="">Order direction:</th>
-            <td class="">
-                <fieldset>
-                    <select name="order_result_direction" id="order_result_direction">
-                        <option value="asc">Ascending</option>
-                        <option value="desc">Descending</option>
-                    </select>
-                    <label for="order_result_direction">
+                    <label for="filter_view_style">
                         Description
                     </label>
                 </fieldset>
@@ -52,6 +28,6 @@
         </tr>
         </tbody>
     </table>
-    <input type="submit" value="Submit">
-    <?php wp_nonce_field( 'save_setting', 'zoo_ln_nonce_setting' ); ?>
+    <input type="submit" value="Save">
+    <?php wp_nonce_field( 'filter_style', 'zoo_ln_nonce_setting' ); ?>
 </form>

@@ -62,6 +62,6 @@ $show_search_field = isset($data['show_search_field']) ? intval($data['show_sear
             </tr>
         </tbody>
     </table>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Save">
     <?php wp_nonce_field( 'general_setting', 'zoo_ln_nonce_setting' ); ?>
 </form>
