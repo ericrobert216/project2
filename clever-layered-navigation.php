@@ -28,6 +28,7 @@ $plugin_url = plugin_dir_url( __FILE__ );
 define( 'ZOO_LN_DIRPATH', $plugin_path );
 define( 'ZOO_LN_TEMPLATES_PATH', $plugin_path."templates/" );
 define( 'ZOO_LN_URL', $plugin_url );
+define( 'ZOO_LN_ADMIN_MENU_SLUG', 'zoo-ln-settings' );
 define( 'ZOO_LN_JSPATH', $plugin_url."assets/js/" );
 define( 'ZOO_LN_CSSPATH', $plugin_url."assets/css/" );
 define( 'ZOO_LN_GALLERYPATH', $plugin_url."assets/images/" );

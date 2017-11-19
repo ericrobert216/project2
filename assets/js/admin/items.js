@@ -339,54 +339,56 @@ var wpWidgets;
                 li.data( 'sidebarId', id );
             });
 
-            $( '#available-widgets .widget .widget-title' ).on( 'click.widgets-chooser', function() {
-                var $widget = $(this).closest( '.widget' );
-
-                if ( $widget.hasClass( 'widget-in-question' ) || $( '#widgets-left' ).hasClass( 'chooser' ) ) {
-                    self.closeChooser();
-                } else {
-                    // Open the chooser
-                    self.clearWidgetSelection();
-                    $( '#widgets-left' ).addClass( 'chooser' );
-                    $widget.addClass( 'widget-in-question' ).children( '.widget-description' ).after( chooser );
-
-                    chooser.slideDown( 300, function() {
-                        selectSidebar.find('.widgets-chooser-selected').focus();
-                    });
-
-                    selectSidebar.find( 'li' ).on( 'focusin.widgets-chooser', function() {
-                        selectSidebar.find('.widgets-chooser-selected').removeClass( 'widgets-chooser-selected' );
-                        $(this).addClass( 'widgets-chooser-selected' );
-                    } );
-                }
-            });
+            // $( '#available-widgets .widget .widget-title' ).on( 'click.widgets-chooser', function() {
+            //     var $widget = $(this).closest( '.widget' );
+            //
+            //     if ( $widget.hasClass( 'widget-in-question' ) || $( '#widgets-left' ).hasClass( 'chooser' ) ) {
+            //         self.closeChooser();
+            //     } else {
+            //         // Open the chooser
+            //         self.clearWidgetSelection();
+            //         $( '#widgets-left' ).addClass( 'chooser' );
+            //         $widget.addClass( 'widget-in-question' ).children( '.widget-description' ).after( chooser );
+            //
+            //         chooser.slideDown( 300, function() {
+            //             selectSidebar.find('.widgets-chooser-selected').focus();
+            //         });
+            //
+            //         selectSidebar.find( 'li' ).on( 'focusin.widgets-chooser', function() {
+            //             selectSidebar.find('.widgets-chooser-selected').removeClass( 'widgets-chooser-selected' );
+            //             $(this).addClass( 'widgets-chooser-selected' );
+            //         } );
+            //     }
+            // });
 
             // Add event handlers
-            chooser.on( 'click.widgets-chooser', function( event ) {
-                var $target = $( event.target );
-
-                if ( $target.hasClass('button-primary') ) {
-                    self.addWidget( chooser );
-                    self.closeChooser();
-                } else if ( $target.hasClass( 'widgets-chooser-cancel' ) ) {
-                    self.closeChooser();
-                }
-            }).on( 'keyup.widgets-chooser', function( event ) {
-                if ( event.which === $.ui.keyCode.ENTER ) {
-                    if ( $( event.target ).hasClass( 'widgets-chooser-cancel' ) ) {
-                        // Close instead of adding when pressing Enter on the Cancel button
-                        self.closeChooser();
-                    } else {
-                        self.addWidget( chooser );
-                        self.closeChooser();
-                    }
-                } else if ( event.which === $.ui.keyCode.ESCAPE ) {
-                    self.closeChooser();
-                }
-            });
+            // chooser.on( 'click.widgets-chooser', function( event ) {
+            //     var $target = $( event.target );
+            //
+            //     if ( $target.hasClass('button-primary') ) {
+            //         self.addWidget( chooser );
+            //         self.closeChooser();
+            //     } else if ( $target.hasClass( 'widgets-chooser-cancel' ) ) {
+            //         self.closeChooser();
+            //     }
+            // }).on( 'keyup.widgets-chooser', function( event ) {
+            //     if ( event.which === $.ui.keyCode.ENTER ) {
+            //         if ( $( event.target ).hasClass( 'widgets-chooser-cancel' ) ) {
+            //             // Close instead of adding when pressing Enter on the Cancel button
+            //             self.closeChooser();
+            //         } else {
+            //             self.addWidget( chooser );
+            //             self.closeChooser();
+            //         }
+            //     } else if ( event.which === $.ui.keyCode.ESCAPE ) {
+            //         self.closeChooser();
+            //     }
+            // });
         },
 
         saveOrder : function( sidebarId ) {
+            console.log('saveOrder function');
+            console.log(sidebarId);
             var data = {
                 action: 'widgets-order',
                 savewidgets: $('#_wpnonce_widgets').val(),
@@ -403,13 +405,24 @@ var wpWidgets;
                 }
             });
 
-            $.post( ajaxurl, data, function() {
-                $( '#inactive-widgets-control-remove' ).prop( 'disabled' , ! $( '#wp_inactive_widgets .widget' ).length );
-                $( '.spinner' ).removeClass( 'is-active' );
-            });
+
+            console.log(data);
+
+            // $.post( ajaxurl, data, function() {
+            //     $( '#inactive-widgets-control-remove' ).prop( 'disabled' , ! $( '#wp_inactive_widgets .widget' ).length );
+            //     $( '.spinner' ).removeClass( 'is-active' );
+            // });
         },
 
         save : function( widget, del, animate, order ) {
+            console.log('save function');
+            console.log(widget);
+            console.log(del);
+            console.log(animate);
+            console.log(order);
+            console.log('aaaaaaaaa');
+                    wpWidgets.saveOrder();
+
             var sidebarId = widget.closest('div.widgets-sortables').attr('id'),
                 data = widget.find('form').serialize(), a;
 
@@ -428,49 +441,49 @@ var wpWidgets;
 
             data += '&' + $.param(a);
 
-            $.post( ajaxurl, data, function(r) {
-                var id;
-
-                if ( del ) {
-                    if ( ! $('input.widget_number', widget).val() ) {
-                        id = $('input.widget-id', widget).val();
-                        $('#available-widgets').find('input.widget-id').each(function(){
-                            if ( $(this).val() === id ) {
-                                $(this).closest('div.widget').show();
-                            }
-                        });
-                    }
-
-                    if ( animate ) {
-                        order = 0;
-                        widget.slideUp('fast', function(){
-                            $(this).remove();
-                            wpWidgets.saveOrder();
-                        });
-                    } else {
-                        widget.remove();
-
-                        if ( sidebarId === 'wp_inactive_widgets' ) {
-                            $( '#inactive-widgets-control-remove' ).prop( 'disabled' , ! $( '#wp_inactive_widgets .widget' ).length );
-                        }
-                    }
-                } else {
-                    $( '.spinner' ).removeClass( 'is-active' );
-                    if ( r && r.length > 2 ) {
-                        $( 'div.widget-content', widget ).html( r );
-                        wpWidgets.appendTitle( widget );
-                        $document.trigger( 'widget-updated', [ widget ] );
-
-                        if ( sidebarId === 'wp_inactive_widgets' ) {
-                            $( '#inactive-widgets-control-remove' ).prop( 'disabled' , ! $( '#wp_inactive_widgets .widget' ).length );
-                        }
-                    }
-                }
-
-                if ( order ) {
-                    wpWidgets.saveOrder();
-                }
-            });
+            // $.post( ajaxurl, data, function(r) {
+            //     var id;
+            //
+            //     if ( del ) {
+            //         if ( ! $('input.widget_number', widget).val() ) {
+            //             id = $('input.widget-id', widget).val();
+            //             $('#available-widgets').find('input.widget-id').each(function(){
+            //                 if ( $(this).val() === id ) {
+            //                     $(this).closest('div.widget').show();
+            //                 }
+            //             });
+            //         }
+            //
+            //         if ( animate ) {
+            //             order = 0;
+            //             widget.slideUp('fast', function(){
+            //                 $(this).remove();
+            //                 wpWidgets.saveOrder();
+            //             });
+            //         } else {
+            //             widget.remove();
+            //
+            //             if ( sidebarId === 'wp_inactive_widgets' ) {
+            //                 $( '#inactive-widgets-control-remove' ).prop( 'disabled' , ! $( '#wp_inactive_widgets .widget' ).length );
+            //             }
+            //         }
+            //     } else {
+            //         $( '.spinner' ).removeClass( 'is-active' );
+            //         if ( r && r.length > 2 ) {
+            //             $( 'div.widget-content', widget ).html( r );
+            //             wpWidgets.appendTitle( widget );
+            //             $document.trigger( 'widget-updated', [ widget ] );
+            //
+            //             if ( sidebarId === 'wp_inactive_widgets' ) {
+            //                 $( '#inactive-widgets-control-remove' ).prop( 'disabled' , ! $( '#wp_inactive_widgets .widget' ).length );
+            //             }
+            //         }
+            //     }
+            //
+            //     if ( order ) {
+            //         wpWidgets.saveOrder();
+            //     }
+            // });
         },
 
         removeInactiveWidgets : function() {
@@ -485,11 +498,11 @@ var wpWidgets;
 
             data = $.param( a );
 
-            $.post( ajaxurl, data, function() {
-                $( '#wp_inactive_widgets .widget' ).remove();
-                $( '#inactive-widgets-control-remove' ).prop( 'disabled' , true );
-                $( '.spinner', $element ).removeClass( 'is-active' );
-            } );
+            // $.post( ajaxurl, data, function() {
+            //     $( '#wp_inactive_widgets .widget' ).remove();
+            //     $( '#inactive-widgets-control-remove' ).prop( 'disabled' , true );
+            //     $( '.spinner', $element ).removeClass( 'is-active' );
+            // } );
         },
 
         appendTitle : function(widget) {

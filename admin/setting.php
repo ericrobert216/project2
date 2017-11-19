@@ -12,9 +12,6 @@ namespace Zoo\Admin\Setting;
 //load admin template
 load_page();
 
-//process save option
-save_setting();
-
 //function
 function load_page() {
     $_section = 'general';
@@ -23,20 +20,15 @@ function load_page() {
         $_section = $_GET['section'];
     }
 
-    require_once ZOO_LN_TEMPLATES_PATH.'admin/view.php';
+    require_once ZOO_LN_TEMPLATES_PATH.'admin/tabs.php';
 
     if ($_section == 'general') {
-        require_once ZOO_LN_TEMPLATES_PATH.'admin/general.php';
-    }else if ($_section == 'setting') {
-        require_once ZOO_LN_TEMPLATES_PATH.'admin/setting.php';
-    }
-}
-function save_setting() {
-
-    //var_dump($_POST);
-
-    if ( isset( $_POST['zoo_ln_nonce_setting'] ) && wp_verify_nonce( $_POST['zoo_ln_nonce_setting'], 'save_setting' ) ) {
-        // process form data
-
+        require_once ZOO_LN_DIRPATH.'admin/setting/general-setting.php';
+    } else if ($_section == 'setting') {
+        require_once ZOO_LN_DIRPATH.'admin/setting/filter-setting.php';
+    } else if ($_section == 'style') {
+        require_once ZOO_LN_DIRPATH.'admin/setting/filter-style.php';
+    } else if ($_section == 'advanced') {
+        require_once ZOO_LN_DIRPATH.'admin/setting/advanced-setting.php';
     }
 }
