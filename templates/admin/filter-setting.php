@@ -63,7 +63,7 @@
                         <div class="sidebar-description">
                             <p class="description">Add filter item here to to active it.</p>
                         </div>
-                        <div id="widget-49_item-17" class="widget">
+                        <!--<div id="widget-49_item-17" class="widget">
                             <div class="widget-top">
                                 <div class="widget-title-action">
                                     <button type="button" class="widget-action hide-if-no-js" aria-expanded="false">
@@ -126,7 +126,7 @@
                             <div class="widget-description">
                                 Product Filter widget version.
                             </div>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
             </div>

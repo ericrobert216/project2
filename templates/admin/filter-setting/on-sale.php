@@ -7,7 +7,7 @@
  */
 ?>
 
-<div id="widget-3_item-__i__" class="widget ui-draggable">
+<div id="widget-3_on_sale-__i__" class="widget ui-draggable">
     <div class="widget-top">
         <div class="widget-title-action">
             <button type="button" class="widget-action hide-if-no-js" aria-expanded="false">
@@ -22,16 +22,16 @@
         <form method="post">
             <div class="widget-content">
                 <p>
-                    <label for="widget-item-__i__-title">Title</label>
-                    <input class="widefat " id="widget-item-__i__-title" name="widget-item[__i__][title]" value="Active filters" type="text">
+                    <label for="widget-on_sale-__i__-title">Title</label>
+                    <input class="widefat " id="widget-on_sale-__i__-title" name="widget-on_sale[__i__][title]" value="Active filters" type="text">
                 </p>
             </div>
-            <input name="widget-id" class="widget-id" value="item-__i__" type="hidden">
-            <input name="id_base" class="id_base" value="item" type="hidden">
+            <input name="widget-id" class="widget-id" value="on_sale-__i__" type="hidden">
+            <input name="id_base" class="id_base" value="on_sale" type="hidden">
             <input name="widget-width" class="widget-width" value="250" type="hidden">
             <input name="widget-height" class="widget-height" value="200" type="hidden">
             <input name="widget_number" class="widget_number" value="-1" type="hidden">
-            <input name="multi_number" class="multi_number" value="2" type="hidden">
+            <input name="multi_number" class="multi_number" value="1" type="hidden"><!--no. of multi item-->
             <input name="add_new" class="add_new" value="multi" type="hidden">
             <div class="widget-control-actions">
                 <div class="alignleft">
@@ -39,7 +39,7 @@
                     <button type="button" class="button-link widget-control-close">Close</button>
                 </div>
                 <div class="alignright">
-                    <input name="savewidget" id="widget-item-__i__-savewidget" class="button button-primary widget-control-save right" value="Save" type="submit">			<span class="spinner"></span>
+                    <input name="savewidget" id="widget-on_sale-__i__-savewidget" class="button button-primary widget-control-save right" value="Save" type="submit">			<span class="spinner"></span>
                 </div>
                 <br class="clear">
             </div>

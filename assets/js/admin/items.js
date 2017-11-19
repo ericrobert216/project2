@@ -388,8 +388,8 @@ var wpWidgets;
 
         saveOrder : function( sidebarId ) {
             var data = {
-                action: 'widgets-order',
-                savewidgets: $('#_wpnonce_widgets').val(),
+                action: 'zoo_ln_save_filter_order',
+                zoo_ln_nonce_setting: $('#zoo_ln_nonce_setting').val(),
                 sidebars: []
             };
 
@@ -403,10 +403,10 @@ var wpWidgets;
                 }
             });
 
-            // $.post( ajaxurl, data, function() {
-            //     $( '#inactive-widgets-control-remove' ).prop( 'disabled' , ! $( '#wp_inactive_widgets .widget' ).length );
-            //     $( '.spinner' ).removeClass( 'is-active' );
-            // });
+            $.post( ajaxurl, data, function() {
+                $( '#inactive-widgets-control-remove' ).prop( 'disabled' , ! $( '#wp_inactive_widgets .widget' ).length );
+                $( '.spinner' ).removeClass( 'is-active' );
+            });
         },
 
         save : function( widget, del, animate, order ) {
@@ -432,6 +432,7 @@ var wpWidgets;
                 var id;
 
                 console.log(r);
+                wpWidgets.saveOrder();
 
                 // if ( del ) {
                 //     if ( ! $('input.widget_number', widget).val() ) {

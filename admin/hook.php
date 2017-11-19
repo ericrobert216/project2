@@ -21,6 +21,9 @@ add_action( 'admin_menu', 'Zoo\Admin\Hook\register_zoo_ln_menu_page' );
 add_action( 'wp_ajax_zoo_ln_save_filter','Zoo\Admin\Ajax\zoo_ln_save_filter' );
 add_action( 'wp_ajax_nopriv_zoo_ln_save_filter', 'Zoo\Admin\Ajax\zoo_ln_save_filter' );
 
+add_action( 'wp_ajax_zoo_ln_save_filter_order','Zoo\Admin\Ajax\zoo_ln_save_filter_order' );
+add_action( 'wp_ajax_nopriv_zoo_ln_save_filter_order', 'Zoo\Admin\Ajax\zoo_ln_save_filter_order' );
+
 
 
 //functions
