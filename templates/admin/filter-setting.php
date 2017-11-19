@@ -7,12 +7,6 @@
  */
 ?>
 
-<script src="<?php echo (ZOO_LN_JSPATH.'jquery.js')?>"></script>
-<script src="<?php echo (ZOO_LN_JSPATH.'jquery-ui.min.js')?>"></script>
-<script src="<?php echo (ZOO_LN_JSPATH.'admin/items.js')?>"></script>
-
-<link rel="stylesheet" href="<?php echo (ZOO_LN_CSSPATH.'bootstrap.min.css')?>">wi
-
 <div class="wrap">
     <h1 class="wp-heading-inline">Filter Setting</h1>
     <hr class="wp-header-end">

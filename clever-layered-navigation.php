@@ -25,6 +25,7 @@ if ( ! defined( 'WPINC' ) ) {
 $plugin_path = plugin_dir_path( __FILE__ )."/";
 $plugin_url = plugin_dir_url( __FILE__ );
 
+define( 'ZOO_LN_VERSION', '1.0.0' );
 define( 'ZOO_LN_DIRPATH', $plugin_path );
 define( 'ZOO_LN_TEMPLATES_PATH', $plugin_path."templates/" );
 define( 'ZOO_LN_URL', $plugin_url );
