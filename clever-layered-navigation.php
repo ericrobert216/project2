@@ -44,6 +44,7 @@ if (Zoo\Helper\Data\check_woocommerce_active()) {
     if (is_admin()) {
         //add hook admin
         require_once(ZOO_LN_DIRPATH . 'admin/hook.php');
+        require_once ZOO_LN_DIRPATH.'admin/ajax.php';
     } else {
         //add hook frontend
         require_once(ZOO_LN_DIRPATH . 'frontend/hook.php');
