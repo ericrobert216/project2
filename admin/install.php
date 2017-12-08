@@ -36,8 +36,8 @@ function add_table_for_filter_config() {
 
     $sql = "CREATE TABLE IF NOT EXISTS $table_name (
                 filter_id int(10) NOT NULL AUTO_INCREMENT,
-                filter_name varchar(256) DEFAULT '' NULL,
-                filter_item_number int(10) NOT NULL ,
+                filter_item_name varchar(256) DEFAULT '' NULL,
+                filter_item_type varchar(256) DEFAULT '' NULL
                 filter_config_value longtext DEFAULT '' NULL,
                 PRIMARY KEY  (filter_id)
                 ) $charset_collate;";

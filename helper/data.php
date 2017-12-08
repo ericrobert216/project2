@@ -79,31 +79,49 @@ function get_global_config_with_name($name = "") {
     return $value;
 }
 
-function save_filter_config_with_name($name = null, $value = null) {
+function save_filter_config_with_name($name = null, $data = null) {
     global $wpdb;
-    $table_name = $wpdb->prefix . "zoo_ln_global_config";
+    $table_name = $wpdb->prefix . "zoo_ln_filter_config";
 
     if (!is_null($name) && !is_null($name)) {
         $name = (string)$name;
-        $value = (string)$value;
         // save config to db
-        $mylink = $wpdb->get_row( "SELECT * FROM $table_name WHERE config_name = '$name'" );
+        $mylink = $wpdb->get_row( "SELECT * FROM $table_name WHERE filter_item_name = '$name'" );
         if (isset($mylink)) {
-            $config_id = $mylink->config_id;
-
+            $filter_id = $mylink->filter_id;
             $wpdb->update(
                 $table_name,
-                array('config_value' => $value),
-                array('config_id' => $config_id)
+                array(
+                    'filter_item_name' => $data['filter_item_name'],
+                    'filter_item_type' => $data['filter_item_type'],
+                    'filter_config_value' => $data['filter_config_value'],
+                ),
+                array('filter_id' => $filter_id)
             );
         } else {
             $wpdb->insert(
                 $table_name,
                 array(
-                    'config_name' => $name,
-                    'config_value' => $value
+                    'filter_item_name' => $data['filter_item_name'],
+                    'filter_item_type' => $data['filter_item_type'],
+                    'filter_config_value' => $data['filter_config_value'],
                 )
             );
         }
     }
+}
+
+function get_filter_config_with_name($name = "") {
+    $data = array();
+
+    if ($name != '') {
+        global $wpdb;
+        $table_name = $wpdb->prefix . "zoo_ln_filter_config";
+        $mylink = $wpdb->get_row( "SELECT * FROM $table_name WHERE filter_item_name = '$name'" );
+        if (isset($mylink)) {
+            $data = (array)$mylink;
+        }
+    }
+
+    return $data;
 }
