@@ -7,6 +7,10 @@
  */
 ?>
 
+<?php
+    $array_multi_number = \Zoo\Admin\Setting\FilterSetting\prepare_multi_number();
+?>
+
 <div class="wrap">
     <h1 class="wp-heading-inline">Filter Setting</h1>
     <hr class="wp-header-end">
@@ -210,10 +214,15 @@
                         <?php
                             $data = \Zoo\Admin\Setting\FilterSetting\prepare_data();
 
-                            echo('<pre/>');
+                            //var_dump($data);
 
-                            var_dump($data);
-                            die;
+
+                            foreach ($data as $item_data) {
+                                if ($item_data['item_type'] == 'attribute') {
+                                    require ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/attribute.php';
+                                }
+                            }
+
                         ?>
 
                     </div>

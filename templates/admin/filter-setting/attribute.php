@@ -7,7 +7,32 @@
  */
 ?>
 
-<div id="attribute-__i__" class="item ui-draggable">
+<?php
+    $item_type = 'attribute';
+    $content_title = '';
+
+//    var_dump($filter_data);
+//    $filter_item_type = $filter_data['filter_item_type'];
+
+
+    if (isset($item_data)) {
+        $item_number = $item_data['item_number'];
+        $multi_number = $array_multi_number[$item_type];
+
+        $sac = (array)json_decode($item_data['item_config_value']['filter_config_value']);
+
+        $content_title = $sac['title'];
+
+//        echo('<pre/>');
+//        var_dump($sac);
+//        die;
+    } else {
+        $item_number = '__i__';
+        $multi_number = 1;
+    }
+?>
+
+<div id="attribute-<?php echo $item_number?>" class="item ui-draggable">
     <div class="item-top">
         <div class="item-title-action">
             <button type="button" class="item-action hide-if-no-js" aria-expanded="false">
@@ -22,12 +47,12 @@
         <form method="post">
             <div class="item-content">
                 <p>
-                    <label for="attribute-__i__-title">Title</label>
-                    <input class="widefat " id="attribute-__i__-title" name="attribute[__i__][title]" value="Active filters" type="text">
+                    <label for="attribute-<?php echo $item_number?>-title">Title</label>
+                    <input class="widefat " id="attribute-<?php echo $item_number?>-title" name="attribute[<?php echo $item_number?>][title]" value="Active filters" type="text">
                 </p>
                 <p>
-                    <label for="attribute-__i__-attribute-ids">Display type</label>
-                    <select class="widefat " id="attribute-__i__-attribute-ids" name="attribute[__i__][attribute-ids]">
+                    <label for="attribute-<?php echo $item_number?>-attribute-ids">Display type</label>
+                    <select class="widefat " id="attribute-<?php echo $item_number?>-attribute-ids" name="attribute[<?php echo $item_number?>][attribute-ids]">
                         <option value="attribute-1">Attribute 1</option>
                         <option value="attribute-2">Attribute 2</option>
                         <option value="attribute-3">Attribute 3</option>
@@ -43,8 +68,8 @@
                     </select>
                 </p>
                 <p>
-                    <label for="attribute-__i__-attribute-options">Display type</label>
-                    <select class="widefat " id="attribute-__i__-attribute-options" name="attribute[__i__][attribute-options]" size="4" multiple>
+                    <label for="attribute-<?php echo $item_number?>-attribute-options">Display type</label>
+                    <select class="widefat " id="attribute-<?php echo $item_number?>-attribute-options" name="attribute[<?php echo $item_number?>][attribute-options]" size="4" multiple>
                         <option value="option-1" selected>Option 1</option>
                         <option value="option-2">Option 2</option>
                         <option value="option-3">Option 3</option>
@@ -60,13 +85,13 @@
                     </select>
                 </p>
             </div>
-            <input name="item-id" class="item-id" value="attribute-__i__" type="hidden">
+            <input name="item-id" class="item-id" value="attribute-<?php echo $item_number?>" type="hidden">
             <input name="item-type" class="item-type" value="attribute" type="hidden">
             <input name="id_base" class="id_base" value="attribute" type="hidden">
             <input name="item-width" class="item-width" value="250" type="hidden">
             <input name="item-height" class="item-height" value="200" type="hidden">
             <input name="item_number" class="item_number" value="-1" type="hidden">
-            <input name="multi_number" class="multi_number" value="1" type="hidden">
+            <input name="multi_number" class="multi_number" value="<?php echo $multi_number;?>" type="hidden">
             <input name="add_new" class="add_new" value="multi" type="hidden">
             <div class="item-control-actions">
                 <div class="alignleft">
@@ -74,7 +99,7 @@
                     <button type="button" class="button-link item-control-close">Close</button>
                 </div>
                 <div class="alignright">
-                    <input name="saveitem" id="attribute-__i__-saveitem" class="button button-primary item-control-save right" value="Save" type="submit">			<span class="spinner"></span>
+                    <input name="saveitem" id="attribute-<?php echo $item_number?>-saveitem" class="button button-primary item-control-save right" value="Save" type="submit">			<span class="spinner"></span>
                 </div>
                 <br class="clear">
             </div>
