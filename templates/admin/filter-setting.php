@@ -28,25 +28,25 @@
                     <div id="item-list">
 
                         <!--price-->
-                        <?php //require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/price.php';?>
+                        <?php require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/price.php';?>
 
                         <!--attribute-->
                         <?php require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/attribute.php';?>
 
                         <!--categories-->
-                        <?php //require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/categories.php';?>
+                        <?php require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/categories.php';?>
 
                         <!--on sale-->
-                        <?php //require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/on-sale.php';?>
+                        <?php require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/on-sale.php';?>
 
                         <!--in stock-->
-                        <?php //require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/in-stock.php';?>
+                        <?php require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/in-stock.php';?>
 
                         <!--review-->
-                        <?php //require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/review.php';?>
+                        <?php require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/review.php';?>
 
                         <!--rating-->
-                        <?php //require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/rating.php';?>
+                        <?php require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/rating.php';?>
 
                     </div>
                     <br class="clear">

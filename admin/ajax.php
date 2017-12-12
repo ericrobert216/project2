@@ -27,7 +27,7 @@ function zoo_ln_save_filter() {
         'filter_config_value' => $filter_config_value
     );
 
-    \Zoo\Helper\Data\save_filter_config_with_name($filter_item_name, $data);
+    //\Zoo\Helper\Data\save_filter_config_with_name($filter_item_name, $data);
 
 
 //    var_dump($_POST);
@@ -48,7 +48,7 @@ function zoo_ln_save_filter_order() {
 //        unset($post_data['zoo_ln_nonce_setting']);
 //        unset($post_data['_wp_http_referer']);
         $data = json_encode($post_data['sidebars']);
-        \Zoo\Helper\Data\save_global_config_with_name('filter-setting-order', $data);
+        //\Zoo\Helper\Data\save_global_config_with_name('filter-setting-order', $data);
     }
     $data = array (
         'result' => 'done'
