@@ -7,7 +7,28 @@
  */
 ?>
 
-<div id="item-3_item-__i__" class="item ui-draggable">
+<?php
+    $item_type = 'in-stock';
+    $add_new = 'multi';
+    $content_title = '';
+
+    if (isset($item_data)) {
+        $item_number = $item_data['item_number'];
+        $sac = (array)reset($item_data['item_config_value']['filter_config_value']);
+        $content_title = $sac['title'];
+        $add_new = '';
+    } else {
+        $item_number = '__i__';
+    }
+
+    if (isset($array_multi_number[$item_type])) {
+        $multi_number = $array_multi_number[$item_type];
+    } else {
+        $multi_number = 1;
+    }
+?>
+
+<div id="in-stock-<?php echo($item_number);?>" class="item ui-draggable">
     <div class="item-top">
         <div class="item-title-action">
             <button type="button" class="item-action hide-if-no-js" aria-expanded="false">
@@ -22,24 +43,25 @@
         <form method="post">
             <div class="item-content">
                 <p>
-                    <label for="item-item-__i__-title">Title</label>
-                    <input class="widefat " id="item-item-__i__-title" name="item-item[__i__][title]" value="Active filters" type="text">
+                    <label for="in-stock-<?php echo($item_number);?>-title">Title</label>
+                    <input class="widefat " id="in-stock-<?php echo($item_number);?>-title" name="in-stock[<?php echo($item_number);?>][title]" value="<?php echo($content_title);?>" type="text">
                 </p>
             </div>
-            <input name="item-id" class="item-id" value="item-__i__" type="hidden">
-            <input name="id_base" class="id_base" value="item" type="hidden">
+            <input name="item-id" class="item-id" value="in-stock-<?php echo($item_number);?>" type="hidden">
+            <input name="id_base" class="id_base" value="in-stock" type="hidden">
+            <input name="item-type" class="item-type" value="<?php echo($item_type);?>" type="hidden">
             <input name="item-width" class="item-width" value="250" type="hidden">
             <input name="item-height" class="item-height" value="200" type="hidden">
             <input name="item_number" class="item_number" value="-1" type="hidden">
-            <input name="multi_number" class="multi_number" value="2" type="hidden">
-            <input name="add_new" class="add_new" value="multi" type="hidden">
+            <input name="multi_number" class="multi_number" value="<?php echo($multi_number)?>" type="hidden"><!--no. of multi item-->
+            <input name="add_new" class="add_new" value="<?php echo($add_new);?>" type="hidden">
             <div class="item-control-actions">
                 <div class="alignleft">
                     <button type="button" class="button-link button-link-delete item-control-remove">Delete</button> |
                     <button type="button" class="button-link item-control-close">Close</button>
                 </div>
                 <div class="alignright">
-                    <input name="saveitem" id="item-item-__i__-saveitem" class="button button-primary item-control-save right" value="Save" type="submit">			<span class="spinner"></span>
+                    <input name="saveitem" id="in-stock-<?php echo($item_number);?>-saveitem" class="button button-primary item-control-save right" value="Save" type="submit">			<span class="spinner"></span>
                 </div>
                 <br class="clear">
             </div>

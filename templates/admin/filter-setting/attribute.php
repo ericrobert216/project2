@@ -15,18 +15,10 @@
 
     if (isset($item_data)) {
         $item_number = $item_data['item_number'];
-
-        $sac = (array)json_decode($item_data['item_config_value']['filter_config_value']);
-        $sac = (array)reset($sac);
-
-        var_dump($sac);
-
+        $sac = (array)reset($item_data['item_config_value']['filter_config_value']);
         $content_title = $sac['title'];
         $attribute_ids = $sac['attribute-ids'];
         $add_new = '';
-
-        var_dump($attribute_ids);
-
     } else {
         $item_number = '__i__';
     }
@@ -36,6 +28,8 @@
     } else {
         $multi_number = 1;
     }
+
+
 ?>
 
 <div id="attribute-<?php echo $item_number?>" class="item ui-draggable">
@@ -92,7 +86,7 @@
                 </p>
             </div>
             <input name="item-id" class="item-id" value="attribute-<?php echo $item_number?>" type="hidden">
-            <input name="item-type" class="item-type" value="attribute" type="hidden">
+            <input name="item-type" class="item-type" value="<?php echo($item_type);?>" type="hidden">
             <input name="id_base" class="id_base" value="attribute" type="hidden">
             <input name="item-width" class="item-width" value="250" type="hidden">
             <input name="item-height" class="item-height" value="200" type="hidden">

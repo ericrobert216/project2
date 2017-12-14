@@ -9,13 +9,6 @@
 namespace Zoo\Admin\Ajax;
 
 function zoo_ln_save_filter() {
-//    $data = array (
-//        'result' => 'error',
-//        'image_url' => ''
-//    );
-
-//    var_dump($_POST);
-//    die;
 
     $filter_item_name = (string)$_POST['item-id'];
     $filter_item_type = (string)$_POST['item-type'];
@@ -29,11 +22,6 @@ function zoo_ln_save_filter() {
 
     \Zoo\Helper\Data\save_filter_config_with_name($filter_item_name, $data);
 
-
-//    var_dump($_POST);
-//
-//    die;
-
     wp_send_json( $_POST );
 
     wp_die();
@@ -44,9 +32,6 @@ function zoo_ln_save_filter_order() {
     if ( isset( $_POST['zoo_ln_nonce_setting'] ) && wp_verify_nonce( $_POST['zoo_ln_nonce_setting'], 'filter_setting' ) ) {
         // process form data
         $post_data = $_POST;
-//        unset($post_data['action']);
-//        unset($post_data['zoo_ln_nonce_setting']);
-//        unset($post_data['_wp_http_referer']);
         $data = json_encode($post_data['sidebars']);
         \Zoo\Helper\Data\save_global_config_with_name('filter-setting-order', $data);
     }

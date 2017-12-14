@@ -499,11 +499,11 @@ var wpWidgets;
 
             data = $.param( a );
 
-            // $.post( ajaxurl, data, function() {
-            //     $( '#wp_inactive_items .item' ).remove();
-            //     $( '#inactive-items-control-remove' ).prop( 'disabled' , true );
-            //     $( '.spinner', $element ).removeClass( 'is-active' );
-            // } );
+            $.post( ajaxurl, data, function() {
+                $( '#wp_inactive_items .item' ).remove();
+                $( '#inactive-items-control-remove' ).prop( 'disabled' , true );
+                $( '.spinner', $element ).removeClass( 'is-active' );
+            } );
         },
 
         appendTitle : function(item) {

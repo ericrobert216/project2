@@ -28,25 +28,25 @@
                     <div id="item-list">
 
                         <!--price-->
-                        <?php //require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/price.php';?>
+                        <?php require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/price.php';?>
 
                         <!--attribute-->
                         <?php require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/attribute.php';?>
 
                         <!--categories-->
-                        <?php //require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/categories.php';?>
+                        <?php require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/categories.php';?>
 
                         <!--on sale-->
-                        <?php //require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/on-sale.php';?>
+                        <?php require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/on-sale.php';?>
 
                         <!--in stock-->
-                        <?php //require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/in-stock.php';?>
+                        <?php require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/in-stock.php';?>
 
                         <!--review-->
-                        <?php //require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/review.php';?>
+                        <?php require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/review.php';?>
 
                         <!--rating-->
-                        <?php //require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/rating.php';?>
+                        <?php require_once ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/rating.php';?>
 
                     </div>
                     <br class="clear">
@@ -214,12 +214,21 @@
                         <?php
                             $data = \Zoo\Admin\Setting\FilterSetting\prepare_data();
 
-                            //var_dump($data);
-
-
                             foreach ($data as $item_data) {
-                                if ($item_data['item_type'] == 'attribute') {
+                                if ($item_data['item_type'] == 'price') {
+                                    require ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/price.php';
+                                } else if ($item_data['item_type'] == 'attribute') {
                                     require ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/attribute.php';
+                                } else if ($item_data['item_type'] == 'categories') {
+                                    require ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/categories.php';
+                                } else if ($item_data['item_type'] == 'on-sale') {
+                                    require ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/on-sale.php';
+                                } else if ($item_data['item_type'] == 'in-stock') {
+                                    require ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/in-stock.php';
+                                } else if ($item_data['item_type'] == 'review') {
+                                    require ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/review.php';
+                                } else if ($item_data['item_type'] == 'rating') {
+                                    require ZOO_LN_TEMPLATES_PATH.'admin/filter-setting/rating.php';
                                 }
                             }
 
