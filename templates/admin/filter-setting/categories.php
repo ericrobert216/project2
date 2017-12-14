@@ -11,13 +11,17 @@
     $item_type = 'categories';
     $add_new = 'multi';
     $content_title = '';
+    $category_ids = array();
+    $hide_empty = 0;
 
     if (isset($item_data)) {
         $item_number = $item_data['item_number'];
         $sac = (array)reset($item_data['item_config_value']['filter_config_value']);
         $content_title = $sac['title'];
-//        $content_title = $sac['title'];
-//        category-ids
+        $category_ids = $sac['category-ids'];
+        if (isset($sac['hide-empty'])) {
+            $hide_empty = $sac['hide-empty'];
+        }
         $add_new = '';
     } else {
         $item_number = '__i__';
@@ -97,12 +101,14 @@
                 </p>
                 <p>
                     <label for="categories-<?php echo($item_number);?>-category-ids">Display type</label>
-                    <select class="widefat " id="categories-<?php echo($item_number);?>-category-ids" name="categories[<?php echo($item_number);?>][category-ids]" size="4" multiple>
+                    <select class="widefat " id="categories-<?php echo($item_number);?>-category-ids" name="categories[<?php echo($item_number);?>][category-ids][]" size="4" multiple>
                         <?php
                         foreach ($all_categories as $cat) {
                             if($cat->category_parent == 0) {
                                 $category_id = $cat->term_id;
-                                echo ('<option value="'.$category_id.'">'.$cat->name.'</option>');
+                                $selected = '';
+                                if (in_array($category_id,$category_ids)) $selected = 'selected';
+                                echo ('<option value="'.$category_id.'" '.$selected.'>'.$cat->name.'</option>');
                                 $args2 = array(
                                     'taxonomy'     => $taxonomy,
                                     'child_of'     => 0,
@@ -117,7 +123,9 @@
                                 $sub_cats = get_categories( $args2 );
                                 if($sub_cats) {
                                     foreach($sub_cats as $sub_category) {
-                                        echo ('<option value="'.$sub_category->term_id.'">'.$sub_category->name.'</option>');
+                                        $selected = '';
+                                        if (in_array($sub_category->term_id,$category_ids)) $selected = 'selected';
+                                        echo ('<option value="'.$sub_category->term_id.'" '.$selected.'>'.$sub_category->name.'</option>');
                                     }
                                 }
                             }
@@ -126,8 +134,8 @@
                     </select>
                 </p>
                 <p>
-                    <input class="checkbox " id="categories-<?php echo($item_number);?>-price-hide-empty-ranges" name="item-nm_woocommerce_price_filter[<?php echo($item_number);?>][price-hide-empty-ranges]" type="checkbox" value="1" checked="checked">
-                    <label for="categories-<?php echo($item_number);?>-price-hide-empty-ranges">Hide empty categories</label>
+                    <input class="checkbox " id="categories-<?php echo($item_number);?>-hide-empty" name="categories[<?php echo($item_number);?>][hide-empty]" type="checkbox" value="1" <?php checked($hide_empty, 1);?>>
+                    <label for="categories-<?php echo($item_number);?>-hide-empty">Hide empty categories</label>
                 </p>
             </div>
             <input name="item-id" class="item-id" value="categories-<?php echo($item_number);?>" type="hidden">

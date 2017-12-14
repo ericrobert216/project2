@@ -29,6 +29,7 @@
         $multi_number = 1;
     }
 
+    $list_attribute = wc_get_attribute_taxonomies();
 
 ?>
 
@@ -53,35 +54,12 @@
                 <p>
                     <label for="attribute-<?php echo $item_number?>-attribute-ids">Display type</label>
                     <select class="widefat " id="attribute-<?php echo $item_number?>-attribute-ids" name="attribute[<?php echo $item_number?>][attribute-ids]">
-                        <option value="attribute-1" <?php selected($attribute_ids,'attribute-1');?>>Attribute 1</option>
-                        <option value="attribute-2" <?php selected($attribute_ids,'attribute-2');?>>Attribute 2</option>
-                        <option value="attribute-3" <?php selected($attribute_ids,'attribute-3');?>>Attribute 3</option>
-                        <option value="attribute-4" <?php selected($attribute_ids,'attribute-4');?>>Attribute 4</option>
-                        <option value="attribute-5" <?php selected($attribute_ids,'attribute-5');?>>Attribute 5</option>
-                        <option value="attribute-6" <?php selected($attribute_ids,'attribute-6');?>>Attribute 6</option>
-                        <option value="attribute-7" <?php selected($attribute_ids,'attribute-7');?>>Attribute 7</option>
-                        <option value="attribute-8" <?php selected($attribute_ids,'attribute-8');?>>Attribute 8</option>
-                        <option value="attribute-9" <?php selected($attribute_ids,'attribute-9');?>>Attribute 9</option>
-                        <option value="attribute-10" <?php selected($attribute_ids,'attribute-10');?>>Attribute 10</option>
-                        <option value="attribute-11" <?php selected($attribute_ids,'attribute-11');?>>Attribute 11</option>
-                        <option value="attribute-12" <?php selected($attribute_ids,'attribute-12');?>>Attribute 12</option>
-                    </select>
-                </p>
-                <p>
-                    <label for="attribute-<?php echo $item_number?>-attribute-options">Display type</label>
-                    <select class="widefat " id="attribute-<?php echo $item_number?>-attribute-options" name="attribute[<?php echo $item_number?>][attribute-options]" size="4" multiple>
-                        <option value="option-1" selected>Option 1</option>
-                        <option value="option-2">Option 2</option>
-                        <option value="option-3">Option 3</option>
-                        <option value="option-4">Option 4</option>
-                        <option value="option-5">Option 5</option>
-                        <option value="option-6">Option 6</option>
-                        <option value="option-7">Option 7</option>
-                        <option value="option-8">Option 8</option>
-                        <option value="option-9">Option 9</option>
-                        <option value="option-10">Option 10</option>
-                        <option value="option-11">Option 11</option>
-                        <option value="option-12">Option 12</option>
+                        <?php
+                            foreach ($list_attribute as $attribute) {
+                                $attribute = (array)$attribute;
+                                echo ('<option value="'.$attribute['attribute_name'].'" '.selected($attribute_ids,$attribute['attribute_name']).'>'.$attribute['attribute_label'].'</option>');
+                            }
+                        ?>
                     </select>
                 </p>
             </div>
