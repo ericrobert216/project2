@@ -22,7 +22,6 @@ function prepare_data() {
         $filter_setting_order = $filter_setting_order['sidebar-1'];
         $filter_setting_order = explode(',', $filter_setting_order);
 
-        $array_multi_number = array();
         foreach ($filter_setting_order as $item) {
             if ($item != '') {
                 $item_data = array();
@@ -35,13 +34,8 @@ function prepare_data() {
                 $item_data['item_type'] = $item_type;
                 $filter_config = \Zoo\Helper\Data\get_filter_config_with_name($item);
 
-//                echo('<pre/>');
-//                var_dump($filter_setting_order);
-//                var_dump($filter_config);
-//                die;
-
                 $sac = json_decode($filter_config['filter_config_value']);
-                $sac = objectToArray($sac);
+                $sac = \Zoo\Helper\Data\objectToArray($sac);
                 $filter_config['filter_config_value'] = $sac;
                 $item_data['item_config_value'] = $filter_config;
 
@@ -71,25 +65,4 @@ function prepare_multi_number() {
 
 
     return $array_multi_number;
-}
-
-function objectToArray($d) {
-    if (is_object($d)) {
-        // Gets the properties of the given object
-        // with get_object_vars function
-        $d = get_object_vars($d);
-    }
-
-    if (is_array($d)) {
-        /*
-        * Return array converted to object
-        * Using __FUNCTION__ (Magic constant)
-        * for recursive call
-        */
-        return array_map(__FUNCTION__, $d);
-    }
-    else {
-        // Return array
-        return $d;
-    }
 }
